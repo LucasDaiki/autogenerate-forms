@@ -1,0 +1,20 @@
+{
+  "name": "autogenerate-forms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucasDaiki/autogenerate-forms.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LucasDaiki/autogenerate-forms/issues"
+  },
+  "homepage": "https://github.com/LucasDaiki/autogenerate-forms#readme",
+  "dependencies": {
+    "unirest": "^0.5.1",
+    "uuid": "^3.0.1"
+  }
+}
