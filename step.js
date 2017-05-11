@@ -1,9 +1,29 @@
+const uuid = require('uuid')
+const Field = require('./Field')
+
 class Step {
-  constructor(step){
-    this.id = step.id
+  constructor(step = { }){
+    this.id = step.id || uuid.v4()
     this.name = step.name
-    this.fields = step.fields
+    this.fields = Field.buildFields(step.fields)
     this.nextStep = step.nextStep
+  }
+
+  addField(field) {
+    this.fields.push(field)
+  }
+
+  setNextStep(nextStep) {
+    this.nextStep = nextStep
+  }
+
+  getField(fieldId) {
+    return this.fields.find(f => f.id === fieldId)
+  }
+
+  getConditions(fieldId) {
+    if(typeof this.nextStep === 'object') 
+      return this.nextStep[fieldId]
   }
 
   getNextStep(nextStep = null) {
@@ -12,7 +32,7 @@ class Step {
 
     if(!this.nextStep) return;
 
-    Object.keys(this.nextStep.conditions).forEach(fieldId => {
+    Object.keys(this.nextStep).forEach(fieldId => {
       if(nextStep) return
       const field = this.getField(fieldId)
       const conditions = this.getConditions(fieldId)
@@ -28,16 +48,8 @@ class Step {
     return nextStep
   }
 
-  getField(fieldId) {
-    return this.fields.find(f => f.id === fieldId)
-  }
-
-  getConditions(fieldId) {
-    return this.nextStep.conditions[fieldId]
-  }
-
   get invalidFields (){
-    return this.fields.filter(field => field.required && !!field.value)
+    return this.fields.filter(field => field.required && !field.value)
   }
 
   static buildSteps(steps = []) {

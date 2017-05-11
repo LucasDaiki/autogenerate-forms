@@ -1,10 +1,21 @@
-var Step = require('./step')
+const uuid = require('uuid')
+const Step = require('./step')
 
 class Template {
-  constructor(template){
-    this.id = template.id
+  constructor(template = {}){
+    this.id = template.id || uuid.v4()
     this.name = template.name
-    this.steps = Step.buildSteps(template.steps)
+    this.steps = Step.buildSteps(template.steps) || []
+  }
+
+  addStep(step){
+    this.steps.push(step)
+    return this
+  }
+
+  defineNextStepTo(stepToDefineNextStep, nextStepConfiguration){
+    const step = this.getStep(stepToDefineNextStep.id)
+    step.setNextStep(nextStepConfiguration)
   }
 
   getStep(stepId) {
