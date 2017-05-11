@@ -1,7 +1,12 @@
+const unirest = require('unirest')
 const Template = require('./template')
-const input = require('./template.json')
 
-const template = new Template(input)
-const nextStep = template.getNextStep('step_1')
+// console.log(JSON.stringify(buildTemplate()))
 
-console.log('FIM', nextStep)
+
+unirest.get('http://localhost:3000/template')
+  .end(response => {
+    const template = new Template(response.body[0].template)
+    // console.log(JSON.stringify(template))
+    console.log(template.getNextStep(template.steps[0].id))
+  })
