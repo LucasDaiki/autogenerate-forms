@@ -1,5 +1,5 @@
 const uuid = require('uuid')
-const Field = require('./Field')
+const Field = require('./Elements/Field/field')
 
 class Step {
   constructor(step = { }){

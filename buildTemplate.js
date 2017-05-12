@@ -1,15 +1,16 @@
-const Template = require('./template')
-const Step = require('./step')
-const Field = require('./field')
+const Template = require('./src/template')
+const Step = require('./src/step')
+const Input = require('./src/Elements/Field/input')
+const DatePicker = require('./src/Elements/Field/datePicker')
 
 // const input = require('./template.json')
 
 function buildTemplate() {
   const template = new Template()
 
-  const field_1_1 = new Field().setName('field_1_1').setValue(1).setRequired(true)
-  const field_1_2 = new Field().setName('field_1_2').setValue(3).setRequired(false)
-  const field_1_3 = new Field().setName('field_1_3').setValue(2).setRequired(false)
+  const field_1_1 = new Input().setName('field_1_1').setValue(1).setRequired(true)
+  const field_1_2 = new DatePicker().setName('field_1_2').setValue(3).setRequired(false)
+  const field_1_3 = new Input().setName('field_1_3').setValue(2).setRequired(false)
 
   const step_1 = new Step({ name: 'step_1', fields: []})
 
@@ -20,10 +21,10 @@ function buildTemplate() {
   template.addStep(step_1)
 
 
-  const field_2_1 = new Field().setName('field_2_1').setValue(4).setRequired(true)
+  const field_2_1 = new Input().setName('field_2_1').setValue(4).setRequired(true)
 
-  const field_2_2 = new Field().setName('field_2_2').setValue(6).setRequired(false)
-  const field_2_3 = new Field().setName('field_2_3').setValue(5).setRequired(false)
+  const field_2_2 = new Input().setName('field_2_2').setValue(6).setRequired(false)
+  const field_2_3 = new DatePicker().setName('field_2_3').setValue(5).setRequired(false)
 
   const step_2 = new Step({ name: 'step_2', fields: []})
 

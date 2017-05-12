@@ -4,6 +4,7 @@ class Field {
   constructor(field = { }){
     this.id = field.id || uuid.v4()
     this.name = field.name
+    this.description = field.description
     this.value = field.value
     this.required = field.required
   }
